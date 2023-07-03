@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Executar Comandos MySQL</title>
+</head>
+<body>
+    <h1>Consultas em uma Banco de Dados dos jogadores da NBA</h1>
+    <h2>Executar Comandos MySQL</h2>
+    <form method="post">
+        <textarea name="query" rows="5" cols="40"></textarea>
+        <br>
+        <input type="submit" value="Executar">
+    </form>
+    {% if result %}
+   <h2>Resultado:</h2>
+   <table>
+       <thead>
+           <tr>
+               {% for column in columns %}
+                   <th>{{ column }}</th>
+               {% endfor %}
+           </tr>
+       </thead>
+       <tbody>
+           {% for row in result %}
+               <tr>
+                   {% for value in row %}
+                       <td>{{ value }}</td>
+                   {% endfor %}
+               </tr>
+           {% endfor %}
+       </tbody>
+   </table>
+{% endif %}
+</body>
+</html>

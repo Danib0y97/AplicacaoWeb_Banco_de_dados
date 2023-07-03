@@ -1,0 +1,2 @@
+Para instalar o pip, vai até onde o Python está instalado dps em Scrpts
+Na barra de cima, escreve cmd e na tela preta instala o pip
