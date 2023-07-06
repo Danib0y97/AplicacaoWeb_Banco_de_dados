@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import mysql.connector
 
-app = Flask(__name__, template_folder='D:\Aplicacao_web_NBA')
+app = Flask(__name__, template_folder='C:\\Users\\danie\\OneDrive\Documentos\\GitHub\\AplicacaoWeb_Banco_de_dados\\Aplicacao_web_NBA')
 
 
 # Configurações do banco de dados
