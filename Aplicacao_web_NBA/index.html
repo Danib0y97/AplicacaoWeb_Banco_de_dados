@@ -1,36 +1,102 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Executar Comandos MySQL</title>
+    <title>Execução de Consultas</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 30px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+            max-width: 800px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-    <h1>Consultas em uma Banco de Dados dos jogadores da NBA</h1>
-    <h2>Executar Comandos MySQL</h2>
-    <form method="post">
-        <textarea name="query" rows="5" cols="40"></textarea>
+<div id = "main-banner">
+    <img src="{{url_for('static', filename='Banner.png')}}" alt="NBA Logo" style="width: 100%;"> 
+    <h1>Execução de Consultas</h1> 
+    <form action="/" method="GET">
+        <label for="rota1">
+            <input type="radio" id="rota1" name="queries" value="rota1">
+            Consulta 1: Total de jogadores na posição 'Center' no time 'Los Angeles Lakers'
+        </label>
         <br>
-        <input type="submit" value="Executar">
+        <label for="rota2">
+            <input type="radio" id="rota2" name="queries" value="rota2">
+            Consulta 2: Total de jogadores nascidos depois de 2000
+        </label>
+        <br>
+        <label for="rota3">
+            <input type="radio" id="rota3" name="queries" value="rota3">
+            Consulta 3: Times com mais de 2 jogadores na posição 'Guard'
+        </label>
+        <br>
+        <label for="rota4">
+            <input type="radio" id="rota4" name="queries" value="rota4">
+            Consulta 4: Nomes dos times com jogadores que são MVP
+        </label>
+        <br>
+        <label for="rota5">
+            <input type="radio" id="rota5" name="queries" value="rota5">
+            Consulta 5: Nome do jogador mais recente que foi MVP
+        </label>
+        <br>
+        <label for="rota6">
+            <input type="radio" id="rota6" name="queries" value="rota6">
+            Consulta 6: Nome e ano de fundação dos times mais antigos
+        </label>
+        <br>
+        <label for="rota7">
+            <input type="radio" id="rota7" name="queries" value="rota7">
+            Consulta 7: Cidade, time campeão e pontos do time visitante na temporada de 2014
+        </label>
+        <br>
+        <input type="submit" value="Executar Consultas">
     </form>
-    {% if result %}
-   <h2>Resultado:</h2>
-   <table>
-       <thead>
-           <tr>
-               {% for column in columns %}
-                   <th>{{ column }}</th>
-               {% endfor %}
-           </tr>
-       </thead>
-       <tbody>
-           {% for row in result %}
-               <tr>
-                   {% for value in row %}
-                       <td>{{ value }}</td>
-                   {% endfor %}
-               </tr>
-           {% endfor %}
-       </tbody>
-   </table>
-{% endif %}
+    <h2>Resultado:</h2>
+    {% if results %}
+        {% for result in results %}
+            {% if result %}
+                <table>
+                    <thead>
+                        <tr>
+                            {% for column in result[0] %}
+                                <th>{{ column }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in result[1] %}
+                            <tr>
+                                {% for value in row %}
+                                    <td>{{ value }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</div>
 </body>
 </html>
